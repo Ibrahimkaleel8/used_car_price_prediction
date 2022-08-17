@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Used car price prediction</title>
+</head>
+<body>
+    <h1>Used car price prediction</h1>
+    <form action="/predict_carprice" method="POST">
+
+        <label>Car Name</label><br>
+        <input type="text" name="car_name"><br><br>
+
+        <label>Age of Vehicle</label><br>
+        <input type="text" name="vehicle_age"><br><br>
+
+        <label>kilometer driven</label><br>
+        <input type="text" name="km_driven"><br><br>
+
+         <label> Type of Seller</label><br>
+        <select id="seller_type" name="seller_type">
+        <option value="0">dealer</option>
+        <option value="1">individual</option>
+        <option value="2">trustmark_dealer</option>
+       </select>
+        <br><br>
+
+        <input type="submit" value="Predict"><br><br>
+
+    </form>
+
+    <br>
+    <br>
+    <h4 styles="color:Black;">
+        {{ response }} </h4>
+
+</body>
+</html>
