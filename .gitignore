@@ -1,0 +1,6 @@
+.DS_Store
+/procfile.txt
+/venv
+.venv
+.__pycache__
+/artefacts/RFModel.pickle

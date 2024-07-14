@@ -20,6 +20,7 @@ def get_estimated_price(car_name,vehicle_age,km_driven,seller_type):
     if loc_index >= 0:
         x[loc_index] = 1
 
+    
     return  round(__model.predict([x])[0],2)
 
 def get_Car_names():
@@ -35,11 +36,12 @@ def load_saved_artefacts():
         __data_columns = json.load(f)['data_columns']
         __car_name = __data_columns[3:]
 
-    with open("./artefacts/LRModel.pickle",'rb') as f:
+    with open("./artefacts/RFModel.pickle",'rb') as f:
         __model = pickle.load(f)
     #print("loading saved artifacts.done")
 
 if __name__ == '__main__':
     load_saved_artefacts()
-    #print(get_Car_names())
-    #print(get_estimated_price('Ford Ecosport', 6, 30000, 1))
+    # print(get_Car_names())
+    print(get_estimated_price('Ford Ecosport', 6, 30000, 1))
+    

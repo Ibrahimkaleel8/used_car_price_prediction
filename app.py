@@ -1,25 +1,25 @@
-from flask import Flask,render_template,request,jsonify
-import util
+from flask import Flask, render_template, request, jsonify
+from modules import util
 import sklearn
 import pickle
 import numpy as np
 
-#model = pickle.load(open('LRModel.pickle','rb'))
+# model = pickle.load(open('LRModel.pickle', 'rb'))
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html")  # Corrected path
 
 @app.route('/get_Car_names')
 def get_Car_names():
-    response = Jsonify({
+    response = jsonify({
         'Car_name': util.get_Car_names()
     })
     #response.headers.add('Access-control-allow-Origin', '*')
     return response
 
-@app.route('/predict_carprice',methods=['POST'])
+@app.route('/predict_carprice', methods=['POST'])
 def predict_carprice():
     car_name = request.form['car_name']
     vehicle_age = int(request.form['vehicle_age'])
@@ -30,16 +30,14 @@ def predict_carprice():
     elif seller_type == "individual":
         Individual = 1
     else:
-        Trustmark_Dealer  = 1
-
+        Trustmark_Dealer = 1
 
     response = jsonify({
-        'estimated_price':util.get_estimated_price(car_name,vehicle_age,km_driven,seller_type)
+        'estimated_price': util.get_estimated_price(car_name, vehicle_age, km_driven, seller_type)
     })
-    #response.headers.add('Access-control-allow-Origin','*')
+    # response.headers.add('Access-control-allow-Origin', '*')
 
     return response
-
 
 if __name__ == "__main__":
     util.load_saved_artefacts()
